@@ -1,0 +1,128 @@
+### pag1:
+Technical test description document so you can demonstrate your
+capabilities in the field of data science managing basic concepts
+of the development of data science solutions, their life cycle and the entire
+engineering that can revolve around putting a solution into production
+advanced analytics.
+
+###pag2:
+
+Aim
+The objective of the technical test is for you to demonstrate your capabilities in the field of data science
+handling basic concepts of the development of data science solutions, their life cycle and all engineering
+that may revolve around putting an advanced analytics solution into production. We are aware that
+some of the technological components that we propose for this technical test you may not know and
+may be a challenge for you, but we think that due to your abilities you will be able to acquire basic knowledge in
+these days to carry out the test.
+Setting up the work environment: Docker + Airflow
+1. The first point that you should cover in the technical test is the use of Docker (https://www.docker.com/)
+to deploy Apache Airflow (https://airflow.apache.org/). Docker is an open source project
+that automates the deployment of applications within software containers, providing a
+additional layer of abstraction and automation of application virtualization across multiple systems
+operational. This point is important because it will help you set up the environment that we propose to you.
+continuation.
+HOW-TO: Docker is generally best handled in Linux environments, but it is perfectly
+viable to use it on Windows as long as you have Windows 10. If you are on Windows, you
+We recommend using WLS2. You have more information about how to install Docker in the following
+link: https://www.docker.com/get-started
+
+2. Once you are familiar with Docker, you will need to use it to deploy Apache Airflow. Apache Airflow
+is a process orchestrator that, unlike others, is based on the specification of process flows.
+execution through Python scripts. The orchestrator is an important piece within any
+advanced analytics platform, since it is the piece that allows integrating services from
+diverse data sources, and provide information synchronously or asynchronously to other services
+Connected data sources with destinations by defining tasks or activities.
+In the case of Airflow, the orchestration between tasks is done by defining what is known as a DAG
+(Directed Acyclic Graph). A DAG is a collection of tasks organized by dependencies between
+them and establishing relationships to say in what order these tasks should be executed
+(https://airflow.apache.org/docs/apache-airflow/stable/concepts/dags.html).
+
+To facilitate the work of how to use Apache Airflow deployed in a Docker container, we are going to
+give the following clues:
+HOW-TO: Follow the instructions in the following link to deploy Apache
+Airflow in Docker using a “.yaml” configuration file called Docker Compose:
+https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html.
+Basically, the steps you will have to follow are the following:
+•
+Download the configuration file and put it in a new project folder
+accompanied by three other subfolders (\dags, \logs and \plugins). The \dags folder is
+where you will have to save the flows of the tasks that you later go to
+implementing to solve this technical test. The project folder will have
+then this initial format: [IMAGE]
+
+###pag3:
+
+
+As a second main step you will have to initialize the database that supports
+the data handled by the orchestrator using the docker-compose up airflow command
+init. This command is executed by Terminal in the folder where you have stored the
+docker-compose.yaml and is responsible for initializing all the services necessary for
+build Airflow in Docker. So: [IMAGE]
+• Finally, you will have to let Airflow run using the docker-compose command
+up. This command will make Airflow accessible from a browser via the link
+http://localhost:8080/. The instructions provided will create a user with permissions
+as an administrator to log in to the Airflow web interface with the airflow user and
+password airflow. You will know that it has worked if when you enter the browser through the
+localhost address you see a screen when you log in like this: [IMAGE]
+
+
+### pag4:
+• Once logged in, you will see a complete list of example DAGs as follows: [IMAGE]
+• Additionally, you will see those DAGs that you have left in the project's \dags folder.
+For example, in our case we have left two dags with the name “tutorial_1” and
+“tutorial_2”. [IMAGE]
+It is very normal to get stuck during Airflow deployment in Docker, but to avoid these problems it is very
+It is important to follow all the instructions indicated in the links provided one by one. From now on,
+Get familiar with the Airflow interface, the concept of DAG (you can see the code by entering each of them)
+and how to execute them.
+
+
+### THE TASK ITSELF:
+
+Once you have Apache Airflow deployed locally using Docker and are familiar with its interface, the way to build DAGs and the way to execute them, we propose that you build a DAG that represents the typical life cycle of building and applying an advanced analytics model. To do this you must use as data source the CSV that is given to you attached to this test (dataset.csv), to understand what it contains you also have available the CSV data_descriptions.csv where the columns contained in the data set are described facilitated by providing its meaning.
+
+In summary, the dataset provided contains a list of clients (identified by the column Customer_Id) belonging to a company in the Telecommunications sector. This company has asked us for help on how to improve the management of its client portfolio. Specific, are interested in the application of analytical techniques to know the factors associated with the reasons
+that leads a client to leave the company, in order to implement improvements in its procedures.
+
+To do this, you will see that the rest of the columns in the dataset contain information about, for example, How many calls or SMSs the client has received.
+
+Your job here will be, from the data set provided:
+
+- to build a DAG that has a preparation step and load the input board for the advanced analytics model of your choice
+- another step that train the model and save the packaged model in a pickle
+- and a last step that loads the model previously trained and saved and, with a hold-out data set, evaluate the model in terms of the metric that you consider most appropriate and show that metric in some way (writing it in the log of execution, for example).
+
+To solve your problem, you will have to develop a predictive model in accordance with the stages that can be
+involve (data analysis, preparation, modeling, measurement…).
+
+Think that business users of the company will want to know what the individual effect of each variable is on the abandonment event of each customer. Furthermore, we want to understand what effect each variable generates on the model (feature importance), and when a client is scored, what variables are favoring or penalizing the risk of abandonment of the company service?
+
+Finally, to give order to your work, we ask you to prepare a short presentation that contains the
+decisions that you have been making and that contain a short description of the problem to be solved, the
+architecture assembled to provide a solution to this problem and the description of the analytical model implemented to
+respond to the questions raised. In addition, you must deliver the code created in order to evaluate it from a good programming practices point of view.
+
+
+### Possible improvements
+
+The technical test is quite free of interpretation, so we give you the opportunity to think for yourself.
+
+Thus, we encourage you to enrich the solution provided and, if you want, do some research on how to deploy a database (PostgreSQL, for example) that allows you to save all the process data (those of
+start, middle, and end) on a system other than Apache Airflow local storage or the execution log. This will involve modifying the process to connect to the database to read write.
+
+You could also deploy an instance of MLflow (https://mlflow.org/) that allows you to record the parameters and metrics of the generated model, which is quite common when applying a MLOps methodology.
+Any integration with monitoring tools that you want to propose (Prometheus and Grafana, for example).
+
+Finally, anything you can think of to enrich the solution in terms of engineering, already either by integrating new pieces into the architecture, or by optimizing processes in terms of performance as in code quality, it will be equally well valued.
+
+On the other hand, regardless of how far you have been able to go, what you have done will also be valued.
+investigated, the exposition you make of the problem to be solved and everything that occurs to you to contribute to test beyond what we propose (for example, if you are strong in data visualization and if you think there is something at this point that you can integrate, go ahead).
+
+
+
+
+
+If at any time you have something to discuss with us, or need us to move the date or time of presentation for any personal issue, do not hesitate to contact us through the following email addresses:
+Jesús Vicente García Hernández (jesusvicente.garcia@sdggroup.com)
+Andrés Padrones García (andres.padrones@sdggroup.com)
+
